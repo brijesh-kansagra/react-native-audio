@@ -74,7 +74,9 @@ var AudioRecorder = {
   stopRecording: function() {
     return AudioRecorderManager.stopRecording();
   },
-  checkAuthorizationStatus: AudioRecorderManager.checkAuthorizationStatus,
+  checkAuthorizationStatus: function() {
+    return AudioRecorderManager.checkAuthorizationStatus();
+  },
   requestAuthorization: () => {
     if (Platform.OS === 'ios')
       return AudioRecorderManager.requestAuthorization();
