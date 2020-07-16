@@ -315,6 +315,11 @@ class AudioRecorderManager extends ReactContextBaseJavaModule {
         if (!isPaused) {
           WritableMap body = Arguments.createMap();
           body.putDouble("currentTime", stopWatch.getTimeSeconds());
+                    int maxAmplitude = 0;
+                    if (recorder != null) {
+                      maxAmplitude = recorder.getMaxAmplitude();
+                    }
+                    body.putInt("currentMetering", maxAmplitude);
           sendEvent("recordingProgress", body);
         }
       }
