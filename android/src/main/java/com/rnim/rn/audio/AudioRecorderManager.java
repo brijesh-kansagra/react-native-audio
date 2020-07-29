@@ -64,7 +64,7 @@ class AudioRecorderManager extends ReactContextBaseJavaModule {
   private boolean isPauseResumeCapable = false;
   private Method pauseMethod = null;
   private Method resumeMethod = null;
-
+  private AudioManager mAudioManager = null;
 
   public AudioRecorderManager(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -80,6 +80,7 @@ class AudioRecorderManager extends ReactContextBaseJavaModule {
         Log.d("ERROR", "Failed to get a reference to pause and/or resume method");
       }
     }
+    mAudioManager = (AudioManager) reactContext.getSystemService(Context.AUDIO_SERVICE);
   }
 
   @Override
@@ -305,6 +306,20 @@ class AudioRecorderManager extends ReactContextBaseJavaModule {
     
     isPaused = false;
     promise.resolve(null);
+  }
+
+  @ReactMethod
+  public void startBluetoothSco(Promise promise) {
+      mAudioManager.setBluetoothScoOn(true);
+      mAudioManager.startBluetoothSco();
+      promise.resolve(true);
+  }
+
+  @ReactMethod
+  public void stopBluetoothSco(Promise promise) {
+      mAudioManager.setBluetoothScoOn(false);
+      mAudioManager.stopBluetoothSco();
+      promise.resolve(true);
   }
 
   private void startTimer(){
