@@ -96,6 +96,12 @@ var AudioRecorder = {
     if (this.progressSubscription) this.progressSubscription.remove();
     if (this.finishedSubscription) this.finishedSubscription.remove();
   },
+  startBluetoothSco: function() {
+    return AudioRecorderManager.startBluetoothSco();
+  },
+  stopBluetoothSco: function(){
+    return AudioRecorderManager.stopBluetoothSco();
+  }
 };
 
 let AudioUtils = {};
